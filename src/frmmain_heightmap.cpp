@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Candle2
  * Copyright (C) 2015-2016 Hayrullin Denis Ravilevich
  * Copyright (C) 2018-2019 Patrick F.
@@ -114,13 +114,20 @@ bool frmMain::updateHeightMapGrid()
     if (!nan && QMessageBox::warning(this, this->windowTitle(), tr("Changing grid settings will reset probe data. Continue?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::No)
         return false;
 
-    // Update grid drawer
     QRectF borderRect = borderRectFromTextboxes();
-    m_heightMapGridDrawer.setBorderRect(borderRect);
-    m_heightMapGridDrawer.setGridSize(QPointF(ui->txtHeightMapGridX->value(), ui->txtHeightMapGridY->value()));
-    m_heightMapGridDrawer.setZBottom(ui->txtHeightMapGridZBottom->value());
-    m_heightMapGridDrawer.setZTop(ui->txtHeightMapGridZTop->value());
+    if(0){
+        // Update grid drawer
+        m_heightMapGridDrawer.setBorderRect(borderRect);
+        m_heightMapGridDrawer.setGridSize(QPointF(ui->txtHeightMapGridX->value(), ui->txtHeightMapGridY->value()));
+        m_heightMapGridDrawer.setZBottom(ui->txtHeightMapGridZBottom->value());
+        m_heightMapGridDrawer.setZTop(ui->txtHeightMapGridZTop->value());
+    }else{
+        // Update grid drawer
+        m_heightMapGridDrawer.setBorderRect(QRect(0,0,100,100));
+        m_heightMapGridDrawer.setGridSize(QPointF(10, 10));
+        m_heightMapGridDrawer.setZBottom(20);
 
+    }
     // Reset model
     int gridPointsX = ui->txtHeightMapGridX->value();
     int gridPointsY = ui->txtHeightMapGridY->value();
@@ -374,7 +381,7 @@ bool frmMain::saveHeightMap(QString fileName)
                << ui->txtHeightMapGridZTop->text() << "\r\n";
     textStream << ui->cboHeightMapInterpolationType->currentIndex() << ";"
                << ui->txtHeightMapInterpolationStepX->text() << ";"
-                << ui->txtHeightMapInterpolationStepY->text() << "\r\n";
+               << ui->txtHeightMapInterpolationStepY->text() << "\r\n";
 
     for (int i = 0; i < m_heightMapModel.rowCount(); i++)
     {
@@ -663,7 +670,7 @@ void frmMain::on_chkHeightMapUse_clicked(bool checked)
                                 if (codeNum == 2.0f || codeNum == 3.0f) {
                                     newCommand.append("G1");
                                     isLinearMove = true;
-                                // Drop plane command for arcs
+                                    // Drop plane command for arcs
                                 } else if (codeNum != 17.0f && codeNum != 18.0f && codeNum != 19.0f) {
                                     newCommand.append(arg);
                                 }
@@ -695,7 +702,7 @@ void frmMain::on_chkHeightMapUse_clicked(bool checked)
                                     if (!newCommand.isEmpty()) newCommand.clear();
                                     j++;
                                 }
-                            // Copy original command if not G0 or G1
+                                // Copy original command if not G0 or G1
                             } else {
                                 item.command = command;
                                 m_programHeightmapModel.data().append(item);

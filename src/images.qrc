@@ -49,5 +49,12 @@
         <file>images/stop.png</file>
         <file>images/pause.png</file>
         <file>images/home.png</file>
+        <file>images/btnJogMoinsA.png</file>
+        <file>images/btnJogPlusA.png</file>
+        <file>images/zero_a.png</file>
+        <file>images/btnFloodM7_light.svg</file>
+        <file>images/btnFloodM8_light.svg</file>
+        <file>images/btnFloodM9_light.svg</file>
+        <file>images/btnFloodM7_1.svg</file>
     </qresource>
 </RCC>

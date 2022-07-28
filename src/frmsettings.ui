@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
-    <height>715</height>
+    <width>864</width>
+    <height>769</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -72,8 +72,8 @@ QGroupBox {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>497</width>
-          <height>1798</height>
+          <width>661</width>
+          <height>2072</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -189,7 +189,14 @@ QGroupBox {
             <item>
              <widget class="QCheckBox" name="chkEnableRotaryAxis">
               <property name="text">
-               <string>Use rotary axis (A and B)</string>
+               <string>Use rotary axis (A)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="chkEnableRotaryBxis">
+              <property name="text">
+               <string>Use rotary axis ( B)</string>
               </property>
              </widget>
             </item>
@@ -1544,13 +1551,13 @@ QGroupBox {
   <customwidget>
    <class>Widget</class>
    <extends>QWidget</extends>
-   <header location="global">widgets/widget.h</header>
+   <header>widgets/widget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>GroupBox</class>
    <extends>QGroupBox</extends>
-   <header location="global">widgets/groupbox.h</header>
+   <header>widgets/groupbox.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -1,4 +1,4 @@
-// This file is a part of "Candle" application.
+﻿// This file is a part of "Candle" application.
 // Copyright 2015-2016 Hayrullin Denis Ravilevich
 
 #include "frmsettings.h"
@@ -587,14 +587,24 @@ void frmSettings::setUseM6(bool value)
     ui->chkUseM6->setChecked(value);
 }
 
-bool frmSettings::UseRotaryAxis()
+bool frmSettings::UseRotaryAAxis()
 {
     return  ui->chkEnableRotaryAxis->isChecked();
 }
 
-void frmSettings::setUseRotaryAxis(bool value)
+void frmSettings::setUseRotaryAAxis(bool value)
 {
     ui->chkEnableRotaryAxis->setChecked(value);
+}
+
+bool frmSettings::UseRotaryBAxis()
+{
+    return  ui->chkEnableRotaryBxis->isChecked();
+}
+
+void frmSettings::setUseRotaryBAxis(bool value)
+{
+    ui->chkEnableRotaryBxis->setChecked(value);
 }
 
 QColor frmSettings::tool()

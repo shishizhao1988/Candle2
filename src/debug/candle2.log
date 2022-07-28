@@ -1,0 +1,15 @@
+﻿  Reading Qt configuration (D:/Qt/5.15.2/msvc2019_64/bin/qmake)
+cl : command line warning D9002: ignoring unknown option '-g3'
+cl : command line warning D9002: ignoring unknown option '-pg'
+  frmmain_processresponse.cpp
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain_processresponse.cpp(305,72): warning C4309: 'argument': truncation of constant value
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain_processresponse.cpp(306,75): warning C4309: 'argument': truncation of constant value
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain_processresponse.cpp(1163,72): warning C4309: 'argument': truncation of constant value
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain_processresponse.cpp(1164,75): warning C4309: 'argument': truncation of constant value
+E:\working\MyMachine\FiveAxisClear\Candle2\src\utils\safequeue.h(81,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+E:\working\MyMachine\FiveAxisClear\Candle2\src\utils\safequeue.h(79): message : while compiling class template member function 'int SafeQueue<CommandQueue2>::size(void)'
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain_processresponse.cpp(456): message : see reference to function template instantiation 'int SafeQueue<CommandQueue2>::size(void)' being compiled
+E:\working\MyMachine\FiveAxisClear\Candle2\src\frmmain.h(395): message : see reference to class template instantiation 'SafeQueue<CommandQueue2>' being compiled
+LINK : warning LNK4044: unrecognized option '/pg'; ignored
+LINK : warning LNK4044: unrecognized option '/lgmon'; ignored
+  candle2.vcxproj -> E:\working\MyMachine\FiveAxisClear\Candle2\src\debug\Candle2.exe

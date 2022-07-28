@@ -1,4 +1,4 @@
-// This file is a part of "Candle" application.
+﻿// This file is a part of "Candle" application.
 // Copyright 2015-2016 Hayrullin Denis Ravilevich
 #ifndef FRMMAIN_H
 #define FRMMAIN_H
@@ -15,6 +15,8 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QProgressDialog>
+#include <QVector3D>
+
 #include <exception>
 #include <atomic>
 
@@ -41,6 +43,14 @@
 #include "frmabout.h"
 
 #include "utils/safequeue.h"
+
+#include "iwindows_xinput_wrapper.h"
+
+#ifndef _MSC_VER
+#define GLIBCXX_USE_NOEXCEPT _GLIBCXX_USE_NOEXCEPT
+#else
+#define _GLIBCXX_USE_NOEXCEPT
+#endif
 
 
 // GRBL Status
@@ -124,7 +134,14 @@ public:
     explicit frmMain(QWidget *parent = 0);
     ~frmMain();
     
+    IWindows_XInput_Wrapper *xWrapper;
 private slots:
+    void GetButtons(short uID, QList<XboxOneButtons> PressedButtons);
+    void GetLeftThumbstick(short uID, double x,double y);
+    void GetRightThumbstick(short uID,double x,double y);
+    void GetLeftTrigger(short uID, byte Value);
+    void GetRightTrigger(short uID, byte Value);
+
     void updateHeightMapInterpolationDrawer(bool reset = false);
     void placeVisualizerButtons();
 
@@ -240,6 +257,24 @@ private slots:
 
     void on_btnSaveCoord_clicked();
 
+    void on_cmdAPlus_pressed();
+
+    void on_cmdAPlus_released();
+
+    void on_cmdAMinus_pressed();
+
+    void on_cmdAMinus_released();
+
+    void on_chkGrblWPosMPos_stateChanged(int arg1);
+
+    void on_cmdZeroA_clicked();
+
+    void on_leGroundHeight_editingFinished();
+
+    void on_cmdPumpM7_clicked(bool checked);
+
+    void on_cmdPumpOffM9_clicked(bool checked);
+
 protected:
     void showEvent(QShowEvent *se);
     void hideEvent(QHideEvent *he);
@@ -270,8 +305,10 @@ private:
     bool DataIsEnd(QString data);
     bool DataIsReset(QString data);
 
+    int status;
     void ProcessGRBL1_1();
     void ProcessGRBL2();
+    void ProcessIsEnd();
 
     void ProcessGRBL_ETH(QString data);
 
@@ -315,7 +352,7 @@ private:
     bool compareCoordinates(double x, double y, double z);
     int getConsoleMinHeight();
     void UpdateOverride(SliderBox *slider, int value, char command);
-    void jogStep();
+    void jogStep(bool isXboxCtrl=false);
     void updateJogTitle();
 
 
@@ -393,6 +430,8 @@ private:
     double m_storedX = 0;
     double m_storedY = 0;
     double m_storedZ = 0;
+    double m_storedA = 0;
+
     QString m_storedParserStatus;
 
     // Console window
@@ -404,6 +443,7 @@ private:
     bool m_settingZeroXY = false;
     bool m_settingZeroX = false;
     bool m_settingZeroZ = false;
+    bool m_settingZeroA = false;
     bool m_homing = false;
     bool m_updateSpindleSpeed = false;
     bool m_updateParserStatus = false;
@@ -413,6 +453,7 @@ private:
     bool m_resetCompleted = true;
     bool m_aborting = false;
     bool m_statusReceived = false;
+    bool m_pinLedStatus[16] = {};
 
     bool m_processingFile = false;
     bool m_transferCompleted = false;
@@ -442,7 +483,12 @@ private:
     bool m_spindleCommandSpeed = false;
 
     // Jog
-    QVector3D m_jogVector;
+    QVector4D m_jogVector;
+    byte xboxJogStatus;
+    //int xboxJogLeft,xboxJogRight;
+    //double xboxLRockerXY,xboxRRockerZA;
+    bool leftTrigOning,rightTrigOning;
+
 
     QStringList m_recentFiles;
     QStringList m_recentHeightmaps;

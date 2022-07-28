@@ -1,4 +1,4 @@
-// This file is a part of "Candle" application.
+﻿// This file is a part of "Candle" application.
 // Copyright 2015-2016 Hayrullin Denis Ravilevich
 
 #ifndef FRMSETTINGS_H
@@ -122,8 +122,10 @@ public:
     void setAutoLine(bool value);
     bool UseM6();
     void setUseM6(bool value);
-    bool UseRotaryAxis();
-    void setUseRotaryAxis(bool value);
+    bool UseRotaryAAxis();
+    void setUseRotaryAAxis(bool value);
+    bool UseRotaryBAxis();
+    void setUseRotaryBAxis(bool value);
 
     QColor tool();
     void setTool(const QColor& color);

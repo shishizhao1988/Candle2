@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Candle2
  * Copyright (C) 2015-2016 Hayrullin Denis Ravilevich
  * Copyright (C) 2018-2019 Patrick F.
@@ -17,6 +17,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 #include <QScrollBar>
+#include <QDebug>
+#include <QElapsedTimer>
 
 #include "frmmain.h"
 #include "ui_frmmain.h"
@@ -79,7 +81,7 @@ void frmMain::updateJogTitle()
     }
 }
 
-void frmMain::jogStep()
+void frmMain::jogStep(bool isXboxCtrl)
 {
     if (m_jogVector.length() == 0)
         return;
@@ -93,97 +95,206 @@ void frmMain::jogStep()
         double dt = qMax(0.01, sqrt(v) / (2 * acc * (N - 1)));      // Single jog command time
         double s = v * dt;                                          // Jog distance
 
-        QVector3D vec = m_jogVector.normalized() * s;
+        QVector4D vec = m_jogVector.normalized() * s;
+        qDebug()<<"continul jog: X"<<vec.x()<<" Y"<<vec.y()<<" Z"<<vec.z()<<" W"<<vec.w()<<" ";
 
-        sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+        sendCommand(QString("$J=G21G91X%1Y%2Z%3A%4F%5")
                     .arg(vec.x(), 0, 'g', 4)
                     .arg(vec.y(), 0, 'g', 4)
                     .arg(vec.z(), 0, 'g', 4)
-                    .arg(speed), -2, m_settings->showUICommands());
+                    .arg(vec.w(),0,'g',4)
+                    .arg(speed), -3, m_settings->showUICommands());//old -2
     }
     else
     {
         int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
-        QVector3D vec = m_jogVector * ui->cboJogStep->currentText().toDouble();
+        QVector4D vec = m_jogVector * ui->cboJogStep->currentText().toDouble();
 
-        sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+        sendCommand(QString("$J=G21G91X%1Y%2Z%3A%4F%5")
                     .arg(vec.x(), 0, 'g', 4)
                     .arg(vec.y(), 0, 'g', 4)
                     .arg(vec.z(), 0, 'g', 4)
+                    .arg(vec.w(), 0, 'g', 4)
                     .arg(speed), -3, m_settings->showUICommands());
     }
 }
 
 void frmMain::on_cmdYPlus_pressed()
 {
-    m_jogVector += QVector3D(0, 1, 0);
+    m_jogVector += QVector4D(0, 1, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdYPlus_released()
 {
-    m_jogVector -= QVector3D(0, 1, 0);
+    m_jogVector -= QVector4D(0, 1, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdYMinus_pressed()
 {
-    m_jogVector += QVector3D(0, -1, 0);
+    m_jogVector += QVector4D(0, -1, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdYMinus_released()
 {
-    m_jogVector -= QVector3D(0, -1, 0);
+    m_jogVector -= QVector4D(0, -1, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdXPlus_pressed()
 {
-    m_jogVector += QVector3D(1, 0, 0);
+    m_jogVector += QVector4D(1, 0, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdXPlus_released()
 {
-    m_jogVector -= QVector3D(1, 0, 0);
+    m_jogVector -= QVector4D(1, 0, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdXMinus_pressed()
 {
-    m_jogVector += QVector3D(-1, 0, 0);
+    m_jogVector += QVector4D(-1, 0, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdXMinus_released()
 {
-    m_jogVector -= QVector3D(-1, 0, 0);
+    m_jogVector -= QVector4D(-1, 0, 0,0);
     jogStep();
 }
 
 void frmMain::on_cmdZPlus_pressed()
 {
-    m_jogVector += QVector3D(0, 0, 1);
+    m_jogVector += QVector4D(0, 0, 1,0);
     jogStep();
 }
 
 void frmMain::on_cmdZPlus_released()
 {
-    m_jogVector -= QVector3D(0, 0, 1);
+    m_jogVector -= QVector4D(0, 0, 1,0);
     jogStep();
 }
 
 void frmMain::on_cmdZMinus_pressed()
 {
-    m_jogVector += QVector3D(0, 0, -1);
+    m_jogVector += QVector4D(0, 0, -1,0);
     jogStep();
 }
 
 void frmMain::on_cmdZMinus_released()
 {
-    m_jogVector -= QVector3D(0, 0, -1);
+    m_jogVector -= QVector4D(0, 0, -1,0);
     jogStep();
+}
+
+
+void frmMain::on_cmdAPlus_pressed()
+{
+    m_jogVector += QVector4D(0, 0, 0,1);
+    jogStep();
+}
+
+
+void frmMain::on_cmdAPlus_released()
+{
+    m_jogVector -= QVector4D(0, 0, 0,1);
+    jogStep();
+}
+
+
+void frmMain::on_cmdAMinus_pressed()
+{
+    m_jogVector += QVector4D(0, 0, 0,-1);
+    jogStep();
+}
+
+
+void frmMain::on_cmdAMinus_released()
+{
+    m_jogVector -= QVector4D(0, 0, 0,-1);
+    jogStep();
+}
+
+void frmMain::GetLeftThumbstick(short uID, double x, double y)
+{
+    if (x != 0 || y != 0)
+    {
+        //qDebug() << "userID - " << uID << "; Left Thumb X: " << x << ", Left Thumb Y: " << y;
+        if(abs(x)>abs(y)){
+            xboxJogStatus=x>0?1:2;
+        }else{
+            xboxJogStatus=y>0?3:4;
+        }
+
+    }
+}
+void frmMain::GetRightThumbstick(short uID, double x, double y)
+{
+    if (x != 0 || y != 0)
+    {
+        //qDebug() << "userID - " << uID << "; Right Thumb X: " << x << ", Right Thumb Y: " << y;
+        xboxJogStatus=abs(x)>abs(y)?3:4 ;
+    }
+}
+
+void frmMain::GetLeftTrigger(short uID, byte Value)
+{
+        if (Value > 60 ){
+            switch (xboxJogStatus) {
+            case 1:
+                on_cmdXPlus_pressed();
+                break;
+            case 2:
+                on_cmdXMinus_pressed();
+            case 3:
+                on_cmdYPlus_pressed();
+            case 4:
+                on_cmdYMinus_pressed();
+            default:
+                break;
+            }
+            leftTrigOning=true;
+        }else{
+            if(leftTrigOning){
+                switch (xboxJogStatus) {
+                case 1:
+                    on_cmdXPlus_released();
+                    break;
+                case 2:
+                    on_cmdXMinus_released();
+                case 3:
+                    on_cmdYPlus_released();
+                case 4:
+                    on_cmdYMinus_released();
+                default:
+                    break;
+                }
+                leftTrigOning=0;
+            }
+        }
+}
+void frmMain::GetRightTrigger(short uID, byte Value)
+{
+        if (Value > 60){
+            if(!rightTrigOning){
+                jogStep(true);
+                rightTrigOning=1;
+            }
+        }else if(Value>10 && Value<60){
+            if(rightTrigOning){
+                m_jogVector=QVector4D(0,0,
+                                      m_jogVector.z()*(-1.0),
+                                      m_jogVector.w()*(-1.0));
+                jogStep(true);
+                rightTrigOning=0;
+            }
+        }
+        //if (Value > 1)
+        //    qDebug() << "userID - " << uID << "; Right Trigger Value: " << Value;
 }
 
 void frmMain::on_cmdStop_clicked()
@@ -191,7 +302,8 @@ void frmMain::on_cmdStop_clicked()
     m_CommandQueueList.clear();
     mCommandsWait.clear();
     mCommandsSent.clear();
-
+    QElapsedTimer timer;
+    timer.start();
     // Jog cancel
     if(m_Protocol == PROT_GRBL1_1)
     {
@@ -205,4 +317,7 @@ void frmMain::on_cmdStop_clicked()
         Pdu_t p = {&c, 1};
         GrIP_Transmit(MSG_REALTIME_CMD, 0, &p);
     }
+    qDebug()<<"jog stop :"<<timer.elapsed();
+
+
 }

@@ -2,19 +2,22 @@
 <ui version="4.0">
  <class>frmMain</class>
  <widget class="QMainWindow" name="frmMain">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1646</width>
-    <height>932</height>
+    <width>1714</width>
+    <height>1021</height>
    </rect>
   </property>
   <property name="acceptDrops">
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string notr="true">Candle 2</string>
+   <string notr="true">PY4axisClear</string>
   </property>
   <property name="windowIcon">
    <iconset resource="images.qrc">
@@ -2768,7 +2771,7 @@ padding-right: 8;</string>
           <property name="overrided" stdset="0">
            <bool>false</bool>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
+          <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
            <property name="leftMargin">
             <number>8</number>
            </property>
@@ -2786,6 +2789,162 @@ padding-right: 8;</string>
              <property name="horizontalSpacing">
               <number>8</number>
              </property>
+             <item row="0" column="7">
+              <widget class="QToolButton" name="cmdZeroZ">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Zero Z</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/zero_z.png</normaloff>:/images/zero_z.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="5">
+              <widget class="QToolButton" name="cmdTouch">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Probe</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/search_for_z.png</normaloff>:/images/search_for_z.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QToolButton" name="cmdSafePosition">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Safe</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/safe_z.png</normaloff>:/images/safe_z.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="7">
+              <widget class="QToolButton" name="cmdUnlock">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Unlock</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/unlock.png</normaloff>:/images/unlock.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QToolButton" name="cmdZeroA">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Zero A</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/zero_a.png</normaloff>:/images/zero_a.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QToolButton" name="cmdRestoreOrigin">
+               <property name="minimumSize">
+                <size>
+                 <width>54</width>
+                 <height>54</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Origin</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/origin.png</normaloff>:/images/origin.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="1">
               <widget class="QToolButton" name="cmdHome">
                <property name="minimumSize">
@@ -2838,136 +2997,6 @@ padding-right: 8;</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QToolButton" name="cmdRestoreOrigin">
-               <property name="minimumSize">
-                <size>
-                 <width>54</width>
-                 <height>54</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Origin</string>
-               </property>
-               <property name="icon">
-                <iconset resource="images.qrc">
-                 <normaloff>:/images/origin.png</normaloff>:/images/origin.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="3">
-              <widget class="QToolButton" name="cmdSafePosition">
-               <property name="minimumSize">
-                <size>
-                 <width>54</width>
-                 <height>54</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Safe</string>
-               </property>
-               <property name="icon">
-                <iconset resource="images.qrc">
-                 <normaloff>:/images/safe_z.png</normaloff>:/images/safe_z.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="7">
-              <widget class="QToolButton" name="cmdZeroZ">
-               <property name="minimumSize">
-                <size>
-                 <width>54</width>
-                 <height>54</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Zero Z</string>
-               </property>
-               <property name="icon">
-                <iconset resource="images.qrc">
-                 <normaloff>:/images/zero_z.png</normaloff>:/images/zero_z.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="7">
-              <widget class="QToolButton" name="cmdUnlock">
-               <property name="minimumSize">
-                <size>
-                 <width>54</width>
-                 <height>54</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Unlock</string>
-               </property>
-               <property name="icon">
-                <iconset resource="images.qrc">
-                 <normaloff>:/images/unlock.png</normaloff>:/images/unlock.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="5">
-              <widget class="QToolButton" name="cmdTouch">
-               <property name="minimumSize">
-                <size>
-                 <width>54</width>
-                 <height>54</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Probe</string>
-               </property>
-               <property name="icon">
-                <iconset resource="images.qrc">
-                 <normaloff>:/images/search_for_z.png</normaloff>:/images/search_for_z.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="3">
               <widget class="QToolButton" name="cmdZeroX">
                <property name="enabled">
@@ -2994,6 +3023,188 @@ padding-right: 8;</string>
                </property>
                <property name="toolButtonStyle">
                 <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QToolButton" name="cmdPumpM7">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Inner Pump</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/btnFloodM8_light.svg</normaloff>:/images/btnFloodM8_light.svg</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="QToolButton" name="cmdPumpM8">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Out Pump</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/btnFloodM7_1.svg</normaloff>:/images/btnFloodM7_1.svg</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="5">
+              <widget class="QToolButton" name="cmdPumpOffM9">
+               <property name="text">
+                <string>Pump Off</string>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/images/btnFloodM9_light.svg</normaloff>:/images/btnFloodM9_light.svg</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextUnderIcon</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="2" column="2">
+              <widget class="LightWidget" name="lwLimitZRev" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="LightWidget" name="lwLimitXRev" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="LightWidget" name="lwPinProbe" native="true"/>
+             </item>
+             <item row="0" column="7">
+              <widget class="LightWidget" name="lwPinSoftreset" native="true"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="LightWidget" name="lwLimitXFwd" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="LightWidget" name="lwLimitARev" native="true"/>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_27">
+               <property name="text">
+                <string>Probe</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_30">
+               <property name="text">
+                <string>A</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="8">
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>Cycle_Start</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>Soft_Reset</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="LightWidget" name="lwLimitYRev" native="true"/>
+             </item>
+             <item row="0" column="5">
+              <widget class="LightWidget" name="lwPinDoor" native="true"/>
+             </item>
+             <item row="0" column="8">
+              <widget class="LightWidget" name="lwPinCyclestrart" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="LightWidget" name="lwLimitYFwd" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_32">
+               <property name="text">
+                <string>Z</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="LightWidget" name="lwPinHold" native="true"/>
+             </item>
+             <item row="2" column="8">
+              <widget class="QCheckBox" name="chkGrblWPosMPos">
+               <property name="text">
+                <string>CheckBox</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="LightWidget" name="lwLimitAFwd" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>Door</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="LightWidget" name="lwLimitZFwd" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>X</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>Y</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_29">
+               <property name="text">
+                <string>Hold</string>
                </property>
               </widget>
              </item>
@@ -3054,8 +3265,8 @@ padding-right: 8;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>385</width>
-            <height>546</height>
+            <width>419</width>
+            <height>578</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -3136,149 +3347,7 @@ padding-right: 8;</string>
                    <property name="verticalSpacing">
                     <number>4</number>
                    </property>
-                   <item row="2" column="0">
-                    <widget class="StyledToolButton" name="cmdXMinus">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>44</width>
-                       <height>44</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>X-</string>
-                     </property>
-                     <property name="text">
-                      <string>...</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="images.qrc">
-                       <normaloff>:/images/1401561986_chevron-left.png</normaloff>:/images/1401561986_chevron-left.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>30</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="3" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_13">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdYMinus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Y-</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562173_chevron-down.png</normaloff>:/images/1401562173_chevron-down.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="2" column="2">
-                    <widget class="StyledToolButton" name="cmdXPlus">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>44</width>
-                       <height>44</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>X+</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="images.qrc">
-                       <normaloff>:/images/1401562173_chevron-right.png</normaloff>:/images/1401562173_chevron-right.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>30</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_12">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdYPlus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Y+</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562173_chevron-up.png</normaloff>:/images/1401562173_chevron-up.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="0" column="3">
+                   <item row="0" column="4">
                     <layout class="QHBoxLayout" name="horizontalLayout_25">
                      <property name="spacing">
                       <number>0</number>
@@ -3330,7 +3399,52 @@ padding-right: 8;</string>
                      </item>
                     </layout>
                    </item>
-                   <item row="3" column="3">
+                   <item row="2" column="3">
+                    <widget class="StyledToolButton" name="cmdXPlus">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>X+</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/1401562173_chevron-right.png</normaloff>:/images/1401562173_chevron-right.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="4">
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="3" column="4">
                     <layout class="QHBoxLayout" name="horizontalLayout_26">
                      <property name="spacing">
                       <number>0</number>
@@ -3382,57 +3496,173 @@ padding-right: 8;</string>
                      </item>
                     </layout>
                    </item>
-                   <item row="2" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_15">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdStop">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>36</width>
-                         <height>36</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Stop</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/brake.png</normaloff>:/images/brake.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="2" column="3">
-                    <spacer name="verticalSpacer">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
+                   <item row="0" column="1">
+                    <widget class="StyledToolButton" name="cmdAPlus">
+                     <property name="minimumSize">
                       <size>
-                       <width>20</width>
+                       <width>44</width>
                        <height>44</height>
                       </size>
                      </property>
-                    </spacer>
+                     <property name="toolTip">
+                      <string>B+</string>
+                     </property>
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/btnJogPlusA.png</normaloff>:/images/btnJogPlusA.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="3">
+                    <widget class="StyledToolButton" name="cmdAMinus">
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>B-</string>
+                     </property>
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/btnJogMoinsA.png</normaloff>:/images/btnJogMoinsA.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="StyledToolButton" name="cmdYMinus">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>Y-</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/1401562173_chevron-down.png</normaloff>:/images/1401562173_chevron-down.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="StyledToolButton" name="cmdYPlus">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>Y+</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/1401562173_chevron-up.png</normaloff>:/images/1401562173_chevron-up.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1" rowspan="2">
+                    <widget class="StyledToolButton" name="cmdXMinus">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>X-</string>
+                     </property>
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/1401561986_chevron-left.png</normaloff>:/images/1401561986_chevron-left.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2" rowspan="2" colspan="2">
+                    <widget class="StyledToolButton" name="cmdStop">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>36</width>
+                       <height>36</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>Stop</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/brake.png</normaloff>:/images/brake.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -3580,6 +3810,26 @@ padding-right: 8;</string>
                        <string>2000</string>
                       </property>
                      </item>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_37">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Ground panel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLineEdit" name="leGroundHeight">
+                     <property name="text">
+                      <string>150</string>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -3868,8 +4118,8 @@ padding-right: 8;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1646</width>
-     <height>21</height>
+     <width>1714</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="mnuFile">
@@ -4004,13 +4254,13 @@ padding-right: 8;</string>
   <customwidget>
    <class>Widget</class>
    <extends>QWidget</extends>
-   <header location="global">widgets/widget.h</header>
+   <header>widgets/widget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>GroupBox</class>
    <extends>QGroupBox</extends>
-   <header location="global">widgets/groupbox.h</header>
+   <header>widgets/groupbox.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -4021,13 +4271,13 @@ padding-right: 8;</string>
   <customwidget>
    <class>GLWidget</class>
    <extends>QWidget</extends>
-   <header location="global">widgets/glwidget.h</header>
+   <header>widgets/glwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
-   <header location="global">widgets/combobox.h</header>
+   <header>widgets/combobox.h</header>
   </customwidget>
   <customwidget>
    <class>SliderBox</class>
@@ -4039,6 +4289,12 @@ padding-right: 8;</string>
    <class>ComboBoxKey</class>
    <extends>QComboBox</extends>
    <header>widgets/comboboxkey.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LightWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/LightWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -4079,8 +4335,6 @@ padding-right: 8;</string>
   <tabstop>cmdSpindle</tabstop>
   <tabstop>cmdXMinus</tabstop>
   <tabstop>cmdXPlus</tabstop>
-  <tabstop>cmdYPlus</tabstop>
-  <tabstop>cmdYMinus</tabstop>
   <tabstop>cmdZPlus</tabstop>
   <tabstop>cmdZMinus</tabstop>
   <tabstop>chkKeyboardControl</tabstop>

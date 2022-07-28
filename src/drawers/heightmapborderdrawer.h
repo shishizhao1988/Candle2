@@ -1,4 +1,4 @@
-// This file is a part of "Candle" application.
+﻿// This file is a part of "Candle" application.
 // Copyright 2015-2016 Hayrullin Denis Ravilevich
 
 #ifndef HEIGHTMAPBORDERDRAWER_H
@@ -14,12 +14,14 @@ public:
 
     QRectF borderRect() const;
     void setBorderRect(const QRectF &borderRect);
+    void setBorderHeight(const float value);
 
 protected:
     bool updateData();
 
 private:
     QRectF m_borderRect;
+    float m_borderHeigh;
 };
 
 #endif // HEIGHTMAPBORDERDRAWER_H

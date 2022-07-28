@@ -47,6 +47,7 @@ SOURCES += main.cpp\
     drawers/origindrawer.cpp \
     drawers/shaderdrawable.cpp \
     drawers/tooldrawer.cpp \
+    iwindows_xinput_wrapper.cpp \
     parser/arcproperties.cpp \
     parser/gcodeparser.cpp \
     parser/gcodepreprocessorutils.cpp \
@@ -87,6 +88,7 @@ HEADERS  += frmmain.h \
     drawers/origindrawer.h \
     drawers/shaderdrawable.h \
     drawers/tooldrawer.h \
+    iwindows_xinput_wrapper.h \
     parser/arcproperties.h \
     parser/gcodeparser.h \
     parser/gcodepreprocessorutils.h \
@@ -97,6 +99,7 @@ HEADERS  += frmmain.h \
     tables/heightmaptablemodel.h \
     utils/interpolation.h \
     utils/util.h \
+    widgets/LightWidget.h \
     widgets/colorpicker.h \
     widgets/combobox.h \
     widgets/groupbox.h \
@@ -126,3 +129,5 @@ RESOURCES += \
     images.qrc
 
 CONFIG += c++14
+
+

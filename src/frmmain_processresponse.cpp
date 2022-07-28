@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Candle2
  * Copyright (C) 2015-2016 Hayrullin Denis Ravilevich
  * Copyright (C) 2018-2019 Patrick F.
@@ -52,19 +52,20 @@ void frmMain::ProcessGRBL1_1()
         // Status response
         if(data[0] == '<')
         {
-            int status = -1;
+            status = -1;
 
             m_statusReceived = true;
 
             // Update machine coordinates
             static QRegExp mpx;
-            if(!m_settings->UseRotaryAxis())
+            if(!m_settings->UseRotaryAAxis() && !m_settings->UseRotaryBAxis())
             {
                 mpx.setPattern("MPos:([^,]*),([^,]*),([^,^>^|]*)");
             }
             else
             {
-                mpx.setPattern("MPos:([^,]*),([^,]*),([^,]*),([^,]*),([^,^>^|]*)");
+                //mpx.setPattern("MPos:([^,]*),([^,]*),([^,]*),([^,]*),([^,^>^|]*)");
+                mpx.setPattern("MPos:([^,]*),([^,]*),([^,]*),([^,^>^|]*)");
             }
 
             if(mpx.indexIn(data) != -1)
@@ -73,12 +74,12 @@ void frmMain::ProcessGRBL1_1()
                 ui->txtMPosY->setText(mpx.cap(2));
                 ui->txtMPosZ->setText(mpx.cap(3));
             }
-            if(m_settings->UseRotaryAxis())
+            if(m_settings->UseRotaryAAxis())
             {
                 // Set A & B
                 //qDebug() << "A: " << mpx.cap(4);
                 ui->txtMPosA->setText(mpx.cap(4));
-                ui->txtMPosB->setText(mpx.cap(5));
+                //ui->txtMPosB->setText(mpx.cap(5));
             }
 
             // Status
@@ -124,39 +125,6 @@ void frmMain::ProcessGRBL1_1()
                     ui->glwVisualizer->setSpendTime(time.addMSecs(elapsed));
                 }
 
-                // Test for job complete
-                if(m_processingFile && m_transferCompleted && ((status == IDLE && m_lastGrblStatus == RUN) || status == CHECK))
-                {
-                    qDebug() << "job completed:" << m_fileCommandIndex << m_currentModel->rowCount() - 1;
-
-                    // Shadow last segment
-                    GcodeViewParse *parser = m_currentDrawer->viewParser();
-                    QList<LineSegment*> list = parser->getLineSegmentList();
-                    if(m_lastDrawnLineIndex < list.count())
-                    {
-                        list[m_lastDrawnLineIndex]->setDrawn(true);
-                        m_currentDrawer->update(QList<int>() << m_lastDrawnLineIndex);
-                    }
-
-                    // Update state
-                    m_processingFile = false;
-                    m_fileProcessedCommandIndex = 0;
-                    m_lastDrawnLineIndex = 0;
-                    m_storedParserStatus.clear();
-
-                    updateControlsState();
-
-                    qApp->beep();
-
-                    m_timerStateQuery.stop();
-                    m_timerSpindleUpdate.stop();
-
-                    QMessageBox::information(this, qApp->applicationDisplayName(), tr("Job done.\nTime elapsed: %1").arg(ui->glwVisualizer->spendTime().toString("hh:mm:ss")));
-
-                    m_timerStateQuery.setInterval(m_settings->queryStateTime());
-                    m_timerSpindleUpdate.start();
-                    m_timerStateQuery.start();
-                }
 
                 // Store status
                 if(status != m_lastGrblStatus)
@@ -203,7 +171,7 @@ void frmMain::ProcessGRBL1_1()
                             y = ui->txtMPosY->text().toDouble();
                             z = ui->txtMPosZ->text().toDouble();
                             a = ui->txtMPosA->text().toDouble();
-                            b = ui->txtMPosB->text().toDouble();
+                            //b = ui->txtMPosB->text().toDouble();
                         }
                         break;
                     }
@@ -215,13 +183,13 @@ void frmMain::ProcessGRBL1_1()
             static double workOffsetAB[2] = {0.0};
             static QRegExp wpx;
 
-            if(!m_settings->UseRotaryAxis())
+            if(!m_settings->UseRotaryAAxis())
             {
                 wpx.setPattern("WCO:([^,]*),([^,]*),([^,^>^|]*)");
             }
             else
             {
-                wpx.setPattern("WCO:([^,]*),([^,]*),([^,]*),([^,]*),([^,^>^|]*)");
+                wpx.setPattern("WCO:([^,]*),([^,]*),([^,]*),([^,^>^|]*)");// X,Y,Z,C
             }
 
             if(wpx.indexIn(data) != -1)
@@ -229,7 +197,7 @@ void frmMain::ProcessGRBL1_1()
                 workOffset = QVector3D(wpx.cap(1).toDouble(), wpx.cap(2).toDouble(), wpx.cap(3).toDouble());
 
                 // Store offsets for rotary axis
-                if(m_settings->UseRotaryAxis())
+                if(m_settings->UseRotaryAAxis())
                 {
                     workOffsetAB[0] = wpx.cap(4).toDouble();
                     workOffsetAB[1] = wpx.cap(5).toDouble();
@@ -242,10 +210,10 @@ void frmMain::ProcessGRBL1_1()
             ui->txtWPosY->display(QString::number(ui->txtMPosY->text().toDouble() - workOffset.y(), 'f', prec));
             ui->txtWPosZ->display(QString::number(ui->txtMPosZ->text().toDouble() - workOffset.z(), 'f', prec));
 
-            if(m_settings->UseRotaryAxis())
+            if(m_settings->UseRotaryAAxis())
             {
                 ui->txtWPosA->display(QString::number(ui->txtMPosA->text().toDouble() - workOffsetAB[0], 'f', prec));
-                ui->txtWPosB->display(QString::number(ui->txtMPosB->text().toDouble() - workOffsetAB[1], 'f', prec));
+                //ui->txtWPosB->display(QString::number(ui->txtMPosB->text().toDouble() - workOffsetAB[1], 'f', prec));
             }
 
             // Update tool position
@@ -361,9 +329,58 @@ void frmMain::ProcessGRBL1_1()
                 // Update pins state
                 QString pinState;
                 static QRegExp pn("Pn:([^|^>]*)");
-                if(pn.indexIn(data) != -1)
+                if (pn.indexIn(data) != -1)
                 {
                     pinState.append(QString(tr("PS: %1")).arg(pn.cap(1)));
+                    QString limitPinStatus = pn.cap(1);
+
+                    if(limitPinStatus.contains("X")||
+                            limitPinStatus.contains("Y")||
+                            limitPinStatus.contains("Z")||
+                            limitPinStatus.contains("A")){
+                        //qDebug()<<"limit state:"<<limitPinStatus;
+                    }
+                    /*
+                    
+                    if (limitPinStatus.contains("X")&& !ui->lwLimitXFwd->isOn()) {
+                        ui->lwLimitXFwd->setOn(true);
+                    }
+                    if (ui->lwLimitXFwd->isOn() && !limitPinStatus.contains("X")) {
+                        ui->lwLimitXFwd->setOn(false);
+                    }
+                    */
+
+                    /*
+                    bool isContainedValue = limitPinStatus.contains("X");
+
+                    if (isContainedValue ^ui->lwLimitXFwd->isOn())
+                    {
+                        ui->lwLimitXFwd->setOn(isContainedValue);
+                    }
+
+                    if (limitPinStatus.contains("Y") ^ ui->lwLimitYFwd->isOn())
+                    {
+                        ui->lwLimitYFwd->setOn(!ui->lwLimitYFwd->isOn());
+                    }
+                    if (limitPinStatus.contains("Z") ^ ui->lwLimitZFwd->isOn())
+                    {
+                        ui->lwLimitZFwd->setOn(!ui->lwLimitZFwd->isOn());
+                    }
+                    if (limitPinStatus.contains("P") ^ ui->lwPinProbe->isOn())
+                    {
+                        ui->lwPinProbe->setOn(!ui->lwPinProbe->isOn());
+                    }
+                    */
+
+                    /*
+                   
+                    m_pinLedStatus[0] = ui->lwLimitXFwd->isOn();
+                    m_pinLedStatus[1] = ui->lwLimitXRev->isOn();
+                    m_pinLedStatus[2] = ui->lwLimitYFwd->isOn();
+                    m_pinLedStatus[3] = ui->lwLimitYRev->isOn();
+                    m_pinLedStatus[4] = ui->lwLimitZFwd->isOn();
+                    m_pinLedStatus[5] = ui->lwLimitZRev->isOn();
+                     */
                 }
 
                 // Process spindle state
@@ -377,6 +394,7 @@ void frmMain::ProcessGRBL1_1()
                     {
                         m_timerToolAnimation.start(25, this);
                         ui->cmdSpindle->setChecked(true);
+
                     }
                     else
                     {
@@ -407,7 +425,9 @@ void frmMain::ProcessGRBL1_1()
                 ui->glwVisualizer->setSpeedState((QString(tr("F/S: %1 / %2")).arg(fs.cap(1)).arg(fs.cap(2))));
             }
 
-        }
+
+
+        }   //END OF data[0] == '<'
         else if(data.length() > 0)
         {
             // Processed commands
@@ -533,8 +553,17 @@ void frmMain::ProcessGRBL1_1()
                                 m_settingZeroZ = false;
                                 m_storedZ = toMetric(rx.cap(3).toDouble());
                             }
+                            else if(m_settingZeroA){
+                                m_settingZeroA=false;
+                                m_storedA = toMetric(rx.cap(4).toDouble());
 
-                            ui->cmdRestoreOrigin->setToolTip(QString(tr("Restore origin: %1, %2, %3\n")).arg(m_storedX).arg(m_storedY).arg(m_storedZ));
+                            }
+
+                            ui->cmdRestoreOrigin->setToolTip(QString(tr("Restore origin: %1, %2, %3 ,%4\n"))
+                                                             .arg(m_storedX)
+                                                             .arg(m_storedY)
+                                                             .arg(m_storedZ)
+                                                             .arg(m_storedA));
                         }
                     }
 
@@ -557,8 +586,14 @@ void frmMain::ProcessGRBL1_1()
                         m_CommandQueueList.clear();
                         mCommandsWait.clear();
                         mCommandsSent.clear();
+                        ProcessIsEnd();
                     }
-
+                    if(ca.command.contains("M7")) ui->cmdPumpM7->setStyleSheet("color: rgb(255, 0, 0);")  ;
+                    if(ca.command.contains("M8")) ui->cmdPumpM8->setStyleSheet("color: rgb(255, 0, 0);")  ;
+                    if(ca.command.contains("M9")){
+                        ui->cmdPumpM7->setStyleSheet("");
+                        ui->cmdPumpM8->setStyleSheet("");
+                    }
                     // Process probing on heightmap mode only from table commands
                     if(ca.command.contains("G38.2") && m_heightMapMode && ca.tableIndex > -1)
                     {
@@ -734,8 +769,12 @@ void frmMain::ProcessGRBL1_1()
                         }
 
                         // Check transfer complete (last row always blank, last command row = rowcount - 2)
-                        if(m_fileProcessedCommandIndex == m_currentModel->rowCount() - 2 || ca.command.contains(QRegExp("M0*2|M30")))
+                        if(m_fileProcessedCommandIndex == m_currentModel->rowCount() - 2
+                                || ca.command.contains(QRegExp("M0*2|M30"))){
                             m_transferCompleted = true;
+                            ProcessIsEnd();
+                            // cheke this line of the m_processingFile && (status == IDLE && m_lastGrblStatus == RUN)
+                        }
                         // Send next program commands
                         else if (!m_fileEndSent && (m_fileCommandIndex < m_currentModel->rowCount()) && !holding)
                             sendNextFileCommands();
@@ -873,13 +912,13 @@ void frmMain::ProcessGRBL_ETH(QString data)
         // Status response
         if(data[0] == '<')
         {
-            int status = -1;
+            status = -1;
 
             m_statusReceived = true;
 
             // Update machine coordinates
             static QRegExp mpx;
-            if(!m_settings->UseRotaryAxis())
+            if(!m_settings->UseRotaryAAxis())
             {
                 mpx.setPattern("MPos:([^,]*),([^,]*),([^,^>^|]*)");
             }
@@ -893,12 +932,12 @@ void frmMain::ProcessGRBL_ETH(QString data)
                 ui->txtMPosY->setText(mpx.cap(2));
                 ui->txtMPosZ->setText(mpx.cap(3));
             }
-            if(m_settings->UseRotaryAxis())
+            if(m_settings->UseRotaryAAxis())
             {
                 // Set A & B
                 //qDebug() << "A: " << mpx.cap(4);
                 ui->txtMPosA->setText(mpx.cap(4));
-                ui->txtMPosB->setText(mpx.cap(5));
+                //ui->txtMPosB->setText(mpx.cap(5));
             }
 
             // Status
@@ -1014,7 +1053,7 @@ void frmMain::ProcessGRBL_ETH(QString data)
                             y = sNan;
                             z = sNan;
                             a = sNan;
-                            b = sNan;
+                            //b = sNan;
                             GrblReset();
                         }
                         else
@@ -1023,7 +1062,7 @@ void frmMain::ProcessGRBL_ETH(QString data)
                             y = ui->txtMPosY->text().toDouble();
                             z = ui->txtMPosZ->text().toDouble();
                             a = ui->txtMPosA->text().toDouble();
-                            b = ui->txtMPosB->text().toDouble();
+                            //b = ui->txtMPosB->text().toDouble();
                         }
                         break;
                     }
@@ -1035,7 +1074,7 @@ void frmMain::ProcessGRBL_ETH(QString data)
             static double workOffsetAB[2] = {0.0};
             static QRegExp wpx;
 
-            if(!m_settings->UseRotaryAxis())
+            if(!m_settings->UseRotaryAAxis())
             {
                 wpx.setPattern("WCO:([^,]*),([^,]*),([^,^>^|]*)");
             }
@@ -1049,7 +1088,7 @@ void frmMain::ProcessGRBL_ETH(QString data)
                 workOffset = QVector3D(wpx.cap(1).toDouble(), wpx.cap(2).toDouble(), wpx.cap(3).toDouble());
 
                 // Store offsets for rotary axis
-                if(m_settings->UseRotaryAxis())
+                if(m_settings->UseRotaryAAxis())
                 {
                     workOffsetAB[0] = wpx.cap(4).toDouble();
                     workOffsetAB[1] = wpx.cap(5).toDouble();
@@ -1061,10 +1100,10 @@ void frmMain::ProcessGRBL_ETH(QString data)
             ui->txtWPosX->display(QString::number(ui->txtMPosX->text().toDouble() - workOffset.x(), 'f', prec));
             ui->txtWPosY->display(QString::number(ui->txtMPosY->text().toDouble() - workOffset.y(), 'f', prec));
             ui->txtWPosZ->display(QString::number(ui->txtMPosZ->text().toDouble() - workOffset.z(), 'f', prec));
-            if(m_settings->UseRotaryAxis())
+            if(m_settings->UseRotaryAAxis())
             {
                 ui->txtWPosA->display(QString::number(ui->txtMPosA->text().toDouble() - workOffsetAB[0], 'f', prec));
-                ui->txtWPosB->display(QString::number(ui->txtMPosB->text().toDouble() - workOffsetAB[1], 'f', prec));
+                //ui->txtWPosB->display(QString::number(ui->txtMPosB->text().toDouble() - workOffsetAB[1], 'f', prec));
             }
 
             // Update tool position
@@ -1668,5 +1707,46 @@ void frmMain::ProcessGRBL2()
     while(SerialIf_CanReadLine())
     {
         QString data = SerialIf_ReadLine().trimmed();
+    }
+}
+
+void frmMain::ProcessIsEnd()
+{
+    qDebug()<<"m_processingFile :"<<m_processingFile<<"   m_ransferCompleted :"<<m_transferCompleted<<"-----------------\n";
+    qDebug()<<"last status is: "<<m_lastGrblStatus<<"   now status is: "<<status<<"-------------\n";
+
+    // Test for job complete
+    if(m_processingFile && m_transferCompleted
+            && ((status == IDLE && m_lastGrblStatus == RUN) || status == CHECK || status ==IDLE))
+    {
+        qDebug() << "job completed:" << m_fileCommandIndex << m_currentModel->rowCount() - 1;
+
+        // Shadow last segment
+        GcodeViewParse *parser = m_currentDrawer->viewParser();
+        QList<LineSegment*> list = parser->getLineSegmentList();
+        if(m_lastDrawnLineIndex < list.count())
+        {
+            list[m_lastDrawnLineIndex]->setDrawn(true);
+            m_currentDrawer->update(QList<int>() << m_lastDrawnLineIndex);
+        }
+
+        // Update state
+        m_processingFile = false;
+        m_fileProcessedCommandIndex = 0;
+        m_lastDrawnLineIndex = 0;
+        m_storedParserStatus.clear();
+
+        updateControlsState();
+
+        qApp->beep();
+
+        m_timerStateQuery.stop();
+        m_timerSpindleUpdate.stop();
+
+        QMessageBox::information(this, qApp->applicationDisplayName(), tr("Job done.\nTime elapsed: %1").arg(ui->glwVisualizer->spendTime().toString("hh:mm:ss")));
+
+        m_timerStateQuery.setInterval(m_settings->queryStateTime());
+        m_timerSpindleUpdate.start();
+        m_timerStateQuery.start();
     }
 }
