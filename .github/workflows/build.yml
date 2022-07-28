@@ -1,0 +1,50 @@
+name: Candle2 CI/CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:  
+    - name: Install QT
+      run: |
+        sudo apt install qt5-default qt5-qmake qtbase5-dev-tools libqt5serialport5-dev -y
+    
+    - uses: actions/checkout@v3
+    
+    - name: configure
+      run: | 
+        mkdir build && cd build
+        qmake ../src/candle2.pro
+        cd ..
+      
+    - name: Build
+      run: |
+        cd build
+        make -j6
+        cd ..
+      
+    - name: Deploy
+      run: | 
+        mkdir -p AppDir/usr/bin
+        mkdir deploy && cd deploy
+        wget "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+        chmod a+x *.AppImage
+        cp ../build/Candle2 ../AppDir/usr/bin
+        ./linuxdeployqt-continuous-x86_64.AppImage ../AppDir/usr/share/applications/Candle2.desktop -verbose=2
+        ./linuxdeployqt-continuous-x86_64.AppImage ../AppDir/usr/share/applications/Candle2.desktop -verbose=2 -appimage
+        cd ..
+        
+    
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with: 
+        name: Candle2_AppImage
+        path: |
+          deploy/Candle2*.AppImage
