@@ -36,7 +36,6 @@
         <file>images/handle_small.png</file>
         <file>images/guard.png</file>
         <file>images/origin.png</file>
-        <file>images/candle_256.png</file>
         <file>images/run.png</file>
         <file>images/num1.png</file>
         <file>images/num2.png</file>
@@ -56,5 +55,6 @@
         <file>images/btnFloodM8_light.svg</file>
         <file>images/btnFloodM9_light.svg</file>
         <file>images/btnFloodM7_1.svg</file>
+        <file>images/pycl.ico</file>
     </qresource>
 </RCC>

@@ -237,9 +237,7 @@ public:
     QVBoxLayout *verticalLayout;
     QGridLayout *gridLayout_5;
     QToolButton *cmdZeroZ;
-    QToolButton *cmdTouch;
     QToolButton *cmdSafePosition;
-    QToolButton *cmdUnlock;
     QToolButton *cmdZeroA;
     QToolButton *cmdRestoreOrigin;
     QToolButton *cmdHome;
@@ -248,6 +246,8 @@ public:
     QToolButton *cmdPumpM7;
     QToolButton *cmdPumpM8;
     QToolButton *cmdPumpOffM9;
+    QToolButton *cmdTouch;
+    QToolButton *cmdUnlock;
     QGridLayout *gridLayout_9;
     LightWidget *lwLimitZRev;
     LightWidget *lwLimitXRev;
@@ -282,20 +282,20 @@ public:
     QWidget *widgetJog;
     QVBoxLayout *verticalLayout_9;
     QGridLayout *gridLayout_3;
-    QHBoxLayout *horizontalLayout_25;
-    QSpacerItem *horizontalSpacer;
-    StyledToolButton *cmdZPlus;
-    StyledToolButton *cmdXPlus;
-    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_26;
     QSpacerItem *horizontalSpacer_2;
     StyledToolButton *cmdZMinus;
-    StyledToolButton *cmdAPlus;
+    QSpacerItem *verticalSpacer;
     StyledToolButton *cmdAMinus;
-    StyledToolButton *cmdYMinus;
-    StyledToolButton *cmdYPlus;
+    StyledToolButton *cmdAPlus;
+    QHBoxLayout *horizontalLayout_25;
+    QSpacerItem *horizontalSpacer;
+    StyledToolButton *cmdZPlus;
     StyledToolButton *cmdXMinus;
+    StyledToolButton *cmdYPlus;
     StyledToolButton *cmdStop;
+    StyledToolButton *cmdXPlus;
+    StyledToolButton *cmdYMinus;
     QGridLayout *gridLayout_8;
     ComboBoxKey *cboJogStep;
     QLabel *label_20;
@@ -338,9 +338,8 @@ public:
         frmMain->setWindowModality(Qt::NonModal);
         frmMain->resize(1714, 1021);
         frmMain->setAcceptDrops(true);
-        frmMain->setWindowTitle(QString::fromUtf8("PY4axisClear"));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/images/candle_256.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/images/pycl.ico"), QSize(), QIcon::Normal, QIcon::Off);
         frmMain->setWindowIcon(icon);
         frmMain->setStyleSheet(QString::fromUtf8("/*QWidget {\n"
 "	font-size: 9pt;\n"
@@ -1764,45 +1763,23 @@ public:
 
         gridLayout_5->addWidget(cmdZeroZ, 0, 7, 1, 1);
 
-        cmdTouch = new QToolButton(grpControl);
-        cmdTouch->setObjectName(QString::fromUtf8("cmdTouch"));
-        cmdTouch->setMinimumSize(QSize(54, 54));
-        QIcon icon17;
-        icon17.addFile(QString::fromUtf8(":/images/search_for_z.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdTouch->setIcon(icon17);
-        cmdTouch->setIconSize(QSize(30, 30));
-        cmdTouch->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-
-        gridLayout_5->addWidget(cmdTouch, 2, 5, 1, 1);
-
         cmdSafePosition = new QToolButton(grpControl);
         cmdSafePosition->setObjectName(QString::fromUtf8("cmdSafePosition"));
         cmdSafePosition->setMinimumSize(QSize(54, 54));
-        QIcon icon18;
-        icon18.addFile(QString::fromUtf8(":/images/safe_z.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdSafePosition->setIcon(icon18);
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/images/safe_z.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdSafePosition->setIcon(icon17);
         cmdSafePosition->setIconSize(QSize(30, 30));
         cmdSafePosition->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout_5->addWidget(cmdSafePosition, 3, 1, 1, 1);
 
-        cmdUnlock = new QToolButton(grpControl);
-        cmdUnlock->setObjectName(QString::fromUtf8("cmdUnlock"));
-        cmdUnlock->setMinimumSize(QSize(54, 54));
-        QIcon icon19;
-        icon19.addFile(QString::fromUtf8(":/images/unlock.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdUnlock->setIcon(icon19);
-        cmdUnlock->setIconSize(QSize(30, 30));
-        cmdUnlock->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-
-        gridLayout_5->addWidget(cmdUnlock, 3, 7, 1, 1);
-
         cmdZeroA = new QToolButton(grpControl);
         cmdZeroA->setObjectName(QString::fromUtf8("cmdZeroA"));
         cmdZeroA->setMinimumSize(QSize(54, 54));
-        QIcon icon20;
-        icon20.addFile(QString::fromUtf8(":/images/zero_a.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdZeroA->setIcon(icon20);
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/images/zero_a.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdZeroA->setIcon(icon18);
         cmdZeroA->setIconSize(QSize(30, 30));
         cmdZeroA->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -1811,9 +1788,9 @@ public:
         cmdRestoreOrigin = new QToolButton(grpControl);
         cmdRestoreOrigin->setObjectName(QString::fromUtf8("cmdRestoreOrigin"));
         cmdRestoreOrigin->setMinimumSize(QSize(54, 54));
-        QIcon icon21;
-        icon21.addFile(QString::fromUtf8(":/images/origin.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdRestoreOrigin->setIcon(icon21);
+        QIcon icon19;
+        icon19.addFile(QString::fromUtf8(":/images/origin.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdRestoreOrigin->setIcon(icon19);
         cmdRestoreOrigin->setIconSize(QSize(30, 30));
         cmdRestoreOrigin->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -1822,9 +1799,9 @@ public:
         cmdHome = new QToolButton(grpControl);
         cmdHome->setObjectName(QString::fromUtf8("cmdHome"));
         cmdHome->setMinimumSize(QSize(54, 54));
-        QIcon icon22;
-        icon22.addFile(QString::fromUtf8(":/images/home.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdHome->setIcon(icon22);
+        QIcon icon20;
+        icon20.addFile(QString::fromUtf8(":/images/home.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdHome->setIcon(icon20);
         cmdHome->setIconSize(QSize(30, 30));
         cmdHome->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -1833,9 +1810,9 @@ public:
         cmdZeroY = new QToolButton(grpControl);
         cmdZeroY->setObjectName(QString::fromUtf8("cmdZeroY"));
         cmdZeroY->setMinimumSize(QSize(54, 54));
-        QIcon icon23;
-        icon23.addFile(QString::fromUtf8(":/images/axis_zero.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdZeroY->setIcon(icon23);
+        QIcon icon21;
+        icon21.addFile(QString::fromUtf8(":/images/axis_zero.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdZeroY->setIcon(icon21);
         cmdZeroY->setIconSize(QSize(30, 30));
         cmdZeroY->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -1845,7 +1822,7 @@ public:
         cmdZeroX->setObjectName(QString::fromUtf8("cmdZeroX"));
         cmdZeroX->setEnabled(true);
         cmdZeroX->setMinimumSize(QSize(54, 54));
-        cmdZeroX->setIcon(icon23);
+        cmdZeroX->setIcon(icon21);
         cmdZeroX->setIconSize(QSize(30, 30));
         cmdZeroX->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
@@ -1854,9 +1831,9 @@ public:
         cmdPumpM7 = new QToolButton(grpControl);
         cmdPumpM7->setObjectName(QString::fromUtf8("cmdPumpM7"));
         cmdPumpM7->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon24;
-        icon24.addFile(QString::fromUtf8(":/images/btnFloodM8_light.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdPumpM7->setIcon(icon24);
+        QIcon icon22;
+        icon22.addFile(QString::fromUtf8(":/images/btnFloodM8_light.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdPumpM7->setIcon(icon22);
         cmdPumpM7->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout_5->addWidget(cmdPumpM7, 4, 1, 1, 1);
@@ -1864,21 +1841,43 @@ public:
         cmdPumpM8 = new QToolButton(grpControl);
         cmdPumpM8->setObjectName(QString::fromUtf8("cmdPumpM8"));
         cmdPumpM8->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon25;
-        icon25.addFile(QString::fromUtf8(":/images/btnFloodM7_1.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdPumpM8->setIcon(icon25);
+        QIcon icon23;
+        icon23.addFile(QString::fromUtf8(":/images/btnFloodM7_1.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdPumpM8->setIcon(icon23);
         cmdPumpM8->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout_5->addWidget(cmdPumpM8, 4, 3, 1, 1);
 
         cmdPumpOffM9 = new QToolButton(grpControl);
         cmdPumpOffM9->setObjectName(QString::fromUtf8("cmdPumpOffM9"));
-        QIcon icon26;
-        icon26.addFile(QString::fromUtf8(":/images/btnFloodM9_light.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdPumpOffM9->setIcon(icon26);
+        QIcon icon24;
+        icon24.addFile(QString::fromUtf8(":/images/btnFloodM9_light.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdPumpOffM9->setIcon(icon24);
         cmdPumpOffM9->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout_5->addWidget(cmdPumpOffM9, 4, 5, 1, 1);
+
+        cmdTouch = new QToolButton(grpControl);
+        cmdTouch->setObjectName(QString::fromUtf8("cmdTouch"));
+        cmdTouch->setMinimumSize(QSize(54, 54));
+        QIcon icon25;
+        icon25.addFile(QString::fromUtf8(":/images/search_for_z.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdTouch->setIcon(icon25);
+        cmdTouch->setIconSize(QSize(30, 30));
+        cmdTouch->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+        gridLayout_5->addWidget(cmdTouch, 4, 7, 1, 1);
+
+        cmdUnlock = new QToolButton(grpControl);
+        cmdUnlock->setObjectName(QString::fromUtf8("cmdUnlock"));
+        cmdUnlock->setMinimumSize(QSize(54, 54));
+        QIcon icon26;
+        icon26.addFile(QString::fromUtf8(":/images/unlock.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdUnlock->setIcon(icon26);
+        cmdUnlock->setIconSize(QSize(30, 30));
+        cmdUnlock->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+        gridLayout_5->addWidget(cmdUnlock, 2, 7, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_5);
@@ -2076,44 +2075,6 @@ public:
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         gridLayout_3->setHorizontalSpacing(8);
         gridLayout_3->setVerticalSpacing(4);
-        horizontalLayout_25 = new QHBoxLayout();
-        horizontalLayout_25->setSpacing(0);
-        horizontalLayout_25->setObjectName(QString::fromUtf8("horizontalLayout_25"));
-        horizontalSpacer = new QSpacerItem(0, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_25->addItem(horizontalSpacer);
-
-        cmdZPlus = new StyledToolButton(widgetJog);
-        cmdZPlus->setObjectName(QString::fromUtf8("cmdZPlus"));
-        sizePolicy3.setHeightForWidth(cmdZPlus->sizePolicy().hasHeightForWidth());
-        cmdZPlus->setSizePolicy(sizePolicy3);
-        cmdZPlus->setMinimumSize(QSize(44, 44));
-        QIcon icon27;
-        icon27.addFile(QString::fromUtf8(":/images/1401562699_icon-arrow-up-b.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdZPlus->setIcon(icon27);
-        cmdZPlus->setIconSize(QSize(28, 28));
-
-        horizontalLayout_25->addWidget(cmdZPlus);
-
-
-        gridLayout_3->addLayout(horizontalLayout_25, 0, 4, 1, 1);
-
-        cmdXPlus = new StyledToolButton(widgetJog);
-        cmdXPlus->setObjectName(QString::fromUtf8("cmdXPlus"));
-        sizePolicy3.setHeightForWidth(cmdXPlus->sizePolicy().hasHeightForWidth());
-        cmdXPlus->setSizePolicy(sizePolicy3);
-        cmdXPlus->setMinimumSize(QSize(44, 44));
-        QIcon icon28;
-        icon28.addFile(QString::fromUtf8(":/images/1401562173_chevron-right.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdXPlus->setIcon(icon28);
-        cmdXPlus->setIconSize(QSize(30, 30));
-
-        gridLayout_3->addWidget(cmdXPlus, 2, 3, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 44, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_3->addItem(verticalSpacer, 2, 4, 1, 1);
-
         horizontalLayout_26 = new QHBoxLayout();
         horizontalLayout_26->setSpacing(0);
         horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
@@ -2126,81 +2087,119 @@ public:
         sizePolicy3.setHeightForWidth(cmdZMinus->sizePolicy().hasHeightForWidth());
         cmdZMinus->setSizePolicy(sizePolicy3);
         cmdZMinus->setMinimumSize(QSize(44, 44));
-        QIcon icon29;
-        icon29.addFile(QString::fromUtf8(":/images/1401562699_icon-arrow-down-b.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdZMinus->setIcon(icon29);
+        QIcon icon27;
+        icon27.addFile(QString::fromUtf8(":/images/1401562699_icon-arrow-down-b.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdZMinus->setIcon(icon27);
         cmdZMinus->setIconSize(QSize(28, 28));
 
         horizontalLayout_26->addWidget(cmdZMinus);
 
 
-        gridLayout_3->addLayout(horizontalLayout_26, 3, 4, 1, 1);
+        gridLayout_3->addLayout(horizontalLayout_26, 4, 6, 1, 1);
 
-        cmdAPlus = new StyledToolButton(widgetJog);
-        cmdAPlus->setObjectName(QString::fromUtf8("cmdAPlus"));
-        cmdAPlus->setMinimumSize(QSize(44, 44));
-        QIcon icon30;
-        icon30.addFile(QString::fromUtf8(":/images/btnJogPlusA.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdAPlus->setIcon(icon30);
+        verticalSpacer = new QSpacerItem(20, 44, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_3->addWidget(cmdAPlus, 0, 1, 1, 1);
+        gridLayout_3->addItem(verticalSpacer, 3, 6, 1, 1);
 
         cmdAMinus = new StyledToolButton(widgetJog);
         cmdAMinus->setObjectName(QString::fromUtf8("cmdAMinus"));
         cmdAMinus->setMinimumSize(QSize(44, 44));
-        QIcon icon31;
-        icon31.addFile(QString::fromUtf8(":/images/btnJogMoinsA.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdAMinus->setIcon(icon31);
+        QIcon icon28;
+        icon28.addFile(QString::fromUtf8(":/images/btnJogMoinsA.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdAMinus->setIcon(icon28);
 
-        gridLayout_3->addWidget(cmdAMinus, 3, 3, 1, 1);
+        gridLayout_3->addWidget(cmdAMinus, 4, 4, 1, 1);
 
-        cmdYMinus = new StyledToolButton(widgetJog);
-        cmdYMinus->setObjectName(QString::fromUtf8("cmdYMinus"));
-        sizePolicy3.setHeightForWidth(cmdYMinus->sizePolicy().hasHeightForWidth());
-        cmdYMinus->setSizePolicy(sizePolicy3);
-        cmdYMinus->setMinimumSize(QSize(44, 44));
-        QIcon icon32;
-        icon32.addFile(QString::fromUtf8(":/images/1401562173_chevron-down.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdYMinus->setIcon(icon32);
-        cmdYMinus->setIconSize(QSize(30, 30));
+        cmdAPlus = new StyledToolButton(widgetJog);
+        cmdAPlus->setObjectName(QString::fromUtf8("cmdAPlus"));
+        cmdAPlus->setMinimumSize(QSize(44, 44));
+        QIcon icon29;
+        icon29.addFile(QString::fromUtf8(":/images/btnJogPlusA.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdAPlus->setIcon(icon29);
 
-        gridLayout_3->addWidget(cmdYMinus, 3, 2, 1, 1);
+        gridLayout_3->addWidget(cmdAPlus, 0, 1, 1, 1);
 
-        cmdYPlus = new StyledToolButton(widgetJog);
-        cmdYPlus->setObjectName(QString::fromUtf8("cmdYPlus"));
-        sizePolicy3.setHeightForWidth(cmdYPlus->sizePolicy().hasHeightForWidth());
-        cmdYPlus->setSizePolicy(sizePolicy3);
-        cmdYPlus->setMinimumSize(QSize(44, 44));
-        QIcon icon33;
-        icon33.addFile(QString::fromUtf8(":/images/1401562173_chevron-up.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdYPlus->setIcon(icon33);
-        cmdYPlus->setIconSize(QSize(30, 30));
+        horizontalLayout_25 = new QHBoxLayout();
+        horizontalLayout_25->setSpacing(0);
+        horizontalLayout_25->setObjectName(QString::fromUtf8("horizontalLayout_25"));
+        horizontalSpacer = new QSpacerItem(0, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_3->addWidget(cmdYPlus, 0, 2, 1, 1);
+        horizontalLayout_25->addItem(horizontalSpacer);
+
+        cmdZPlus = new StyledToolButton(widgetJog);
+        cmdZPlus->setObjectName(QString::fromUtf8("cmdZPlus"));
+        sizePolicy3.setHeightForWidth(cmdZPlus->sizePolicy().hasHeightForWidth());
+        cmdZPlus->setSizePolicy(sizePolicy3);
+        cmdZPlus->setMinimumSize(QSize(44, 44));
+        QIcon icon30;
+        icon30.addFile(QString::fromUtf8(":/images/1401562699_icon-arrow-up-b.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdZPlus->setIcon(icon30);
+        cmdZPlus->setIconSize(QSize(28, 28));
+
+        horizontalLayout_25->addWidget(cmdZPlus);
+
+
+        gridLayout_3->addLayout(horizontalLayout_25, 0, 6, 1, 1);
 
         cmdXMinus = new StyledToolButton(widgetJog);
         cmdXMinus->setObjectName(QString::fromUtf8("cmdXMinus"));
         sizePolicy3.setHeightForWidth(cmdXMinus->sizePolicy().hasHeightForWidth());
         cmdXMinus->setSizePolicy(sizePolicy3);
         cmdXMinus->setMinimumSize(QSize(44, 44));
-        QIcon icon34;
-        icon34.addFile(QString::fromUtf8(":/images/1401561986_chevron-left.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdXMinus->setIcon(icon34);
+        QIcon icon31;
+        icon31.addFile(QString::fromUtf8(":/images/1401562173_chevron-down.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdXMinus->setIcon(icon31);
         cmdXMinus->setIconSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(cmdXMinus, 1, 1, 2, 1);
+        gridLayout_3->addWidget(cmdXMinus, 4, 2, 1, 1);
+
+        cmdYPlus = new StyledToolButton(widgetJog);
+        cmdYPlus->setObjectName(QString::fromUtf8("cmdYPlus"));
+        sizePolicy3.setHeightForWidth(cmdYPlus->sizePolicy().hasHeightForWidth());
+        cmdYPlus->setSizePolicy(sizePolicy3);
+        cmdYPlus->setMinimumSize(QSize(44, 44));
+        QIcon icon32;
+        icon32.addFile(QString::fromUtf8(":/images/1401561986_chevron-left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdYPlus->setIcon(icon32);
+        cmdYPlus->setIconSize(QSize(30, 30));
+
+        gridLayout_3->addWidget(cmdYPlus, 1, 1, 1, 1);
 
         cmdStop = new StyledToolButton(widgetJog);
         cmdStop->setObjectName(QString::fromUtf8("cmdStop"));
         sizePolicy3.setHeightForWidth(cmdStop->sizePolicy().hasHeightForWidth());
         cmdStop->setSizePolicy(sizePolicy3);
         cmdStop->setMinimumSize(QSize(36, 36));
-        QIcon icon35;
-        icon35.addFile(QString::fromUtf8(":/images/brake.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cmdStop->setIcon(icon35);
+        QIcon icon33;
+        icon33.addFile(QString::fromUtf8(":/images/brake.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdStop->setIcon(icon33);
         cmdStop->setIconSize(QSize(30, 30));
 
-        gridLayout_3->addWidget(cmdStop, 1, 2, 2, 2);
+        gridLayout_3->addWidget(cmdStop, 1, 2, 1, 1);
+
+        cmdXPlus = new StyledToolButton(widgetJog);
+        cmdXPlus->setObjectName(QString::fromUtf8("cmdXPlus"));
+        sizePolicy3.setHeightForWidth(cmdXPlus->sizePolicy().hasHeightForWidth());
+        cmdXPlus->setSizePolicy(sizePolicy3);
+        cmdXPlus->setMinimumSize(QSize(44, 44));
+        QIcon icon34;
+        icon34.addFile(QString::fromUtf8(":/images/1401562173_chevron-up.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdXPlus->setIcon(icon34);
+        cmdXPlus->setIconSize(QSize(30, 30));
+
+        gridLayout_3->addWidget(cmdXPlus, 0, 2, 1, 1);
+
+        cmdYMinus = new StyledToolButton(widgetJog);
+        cmdYMinus->setObjectName(QString::fromUtf8("cmdYMinus"));
+        sizePolicy3.setHeightForWidth(cmdYMinus->sizePolicy().hasHeightForWidth());
+        cmdYMinus->setSizePolicy(sizePolicy3);
+        cmdYMinus->setMinimumSize(QSize(44, 44));
+        QIcon icon35;
+        icon35.addFile(QString::fromUtf8(":/images/1401562173_chevron-right.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cmdYMinus->setIcon(icon35);
+        cmdYMinus->setIconSize(QSize(30, 30));
+
+        gridLayout_3->addWidget(cmdYMinus, 1, 4, 1, 1);
 
 
         verticalLayout_9->addLayout(gridLayout_3);
@@ -2468,9 +2467,7 @@ public:
         QWidget::setTabOrder(cmdHeightMapLoad, cmdHeightMapMode);
         QWidget::setTabOrder(cmdHeightMapMode, grpSpindle);
         QWidget::setTabOrder(grpSpindle, cmdSpindle);
-        QWidget::setTabOrder(cmdSpindle, cmdXMinus);
-        QWidget::setTabOrder(cmdXMinus, cmdXPlus);
-        QWidget::setTabOrder(cmdXPlus, cmdZPlus);
+        QWidget::setTabOrder(cmdSpindle, cmdZPlus);
         QWidget::setTabOrder(cmdZPlus, cmdZMinus);
         QWidget::setTabOrder(cmdZMinus, chkKeyboardControl);
         QWidget::setTabOrder(chkKeyboardControl, txtConsole);
@@ -2516,6 +2513,7 @@ public:
 
     void retranslateUi(QMainWindow *frmMain)
     {
+        frmMain->setWindowTitle(QCoreApplication::translate("frmMain", "PY4axisClear", nullptr));
         actFileOpen->setText(QCoreApplication::translate("frmMain", "&Open", nullptr));
         actFileExit->setText(QCoreApplication::translate("frmMain", "E&xit", nullptr));
         actServiceSettings->setText(QCoreApplication::translate("frmMain", "&Settings", nullptr));
@@ -2665,17 +2663,17 @@ public:
         cmdReset->setText(QCoreApplication::translate("frmMain", "Reset", nullptr));
         grpControl->setTitle(QCoreApplication::translate("frmMain", "Control", nullptr));
         cmdZeroZ->setText(QCoreApplication::translate("frmMain", "Zero Z", nullptr));
-        cmdTouch->setText(QCoreApplication::translate("frmMain", "Probe", nullptr));
         cmdSafePosition->setText(QCoreApplication::translate("frmMain", "Safe", nullptr));
-        cmdUnlock->setText(QCoreApplication::translate("frmMain", "Unlock", nullptr));
         cmdZeroA->setText(QCoreApplication::translate("frmMain", "Zero A", nullptr));
         cmdRestoreOrigin->setText(QCoreApplication::translate("frmMain", "Origin", nullptr));
         cmdHome->setText(QCoreApplication::translate("frmMain", "HOME", nullptr));
         cmdZeroY->setText(QCoreApplication::translate("frmMain", "Zero Y", nullptr));
         cmdZeroX->setText(QCoreApplication::translate("frmMain", "Zero X", nullptr));
-        cmdPumpM7->setText(QCoreApplication::translate("frmMain", "Inner Pump", nullptr));
-        cmdPumpM8->setText(QCoreApplication::translate("frmMain", "Out Pump", nullptr));
+        cmdPumpM7->setText(QCoreApplication::translate("frmMain", "Out Pump", nullptr));
+        cmdPumpM8->setText(QCoreApplication::translate("frmMain", "Inner Pump", nullptr));
         cmdPumpOffM9->setText(QCoreApplication::translate("frmMain", "Pump Off", nullptr));
+        cmdTouch->setText(QCoreApplication::translate("frmMain", "Probe", nullptr));
+        cmdUnlock->setText(QCoreApplication::translate("frmMain", "Unlock", nullptr));
         label_27->setText(QCoreApplication::translate("frmMain", "Probe", nullptr));
         label_30->setText(QCoreApplication::translate("frmMain", "A", nullptr));
         label_36->setText(QCoreApplication::translate("frmMain", "Cycle_Start", nullptr));
@@ -2688,41 +2686,41 @@ public:
         label_29->setText(QCoreApplication::translate("frmMain", "Hold", nullptr));
         grpJog->setTitle(QCoreApplication::translate("frmMain", "Jog", nullptr));
 #if QT_CONFIG(tooltip)
-        cmdZPlus->setToolTip(QCoreApplication::translate("frmMain", "Z+", nullptr));
-#endif // QT_CONFIG(tooltip)
-        cmdZPlus->setText(QString());
-#if QT_CONFIG(tooltip)
-        cmdXPlus->setToolTip(QCoreApplication::translate("frmMain", "X+", nullptr));
-#endif // QT_CONFIG(tooltip)
-        cmdXPlus->setText(QString());
-#if QT_CONFIG(tooltip)
         cmdZMinus->setToolTip(QCoreApplication::translate("frmMain", "Z-", nullptr));
 #endif // QT_CONFIG(tooltip)
         cmdZMinus->setText(QString());
-#if QT_CONFIG(tooltip)
-        cmdAPlus->setToolTip(QCoreApplication::translate("frmMain", "B+", nullptr));
-#endif // QT_CONFIG(tooltip)
-        cmdAPlus->setText(QCoreApplication::translate("frmMain", "...", nullptr));
 #if QT_CONFIG(tooltip)
         cmdAMinus->setToolTip(QCoreApplication::translate("frmMain", "B-", nullptr));
 #endif // QT_CONFIG(tooltip)
         cmdAMinus->setText(QCoreApplication::translate("frmMain", "...", nullptr));
 #if QT_CONFIG(tooltip)
-        cmdYMinus->setToolTip(QCoreApplication::translate("frmMain", "Y-", nullptr));
+        cmdAPlus->setToolTip(QCoreApplication::translate("frmMain", "B+", nullptr));
 #endif // QT_CONFIG(tooltip)
-        cmdYMinus->setText(QString());
+        cmdAPlus->setText(QCoreApplication::translate("frmMain", "...", nullptr));
 #if QT_CONFIG(tooltip)
-        cmdYPlus->setToolTip(QCoreApplication::translate("frmMain", "Y+", nullptr));
+        cmdZPlus->setToolTip(QCoreApplication::translate("frmMain", "Z+", nullptr));
 #endif // QT_CONFIG(tooltip)
-        cmdYPlus->setText(QString());
+        cmdZPlus->setText(QString());
 #if QT_CONFIG(tooltip)
         cmdXMinus->setToolTip(QCoreApplication::translate("frmMain", "X-", nullptr));
 #endif // QT_CONFIG(tooltip)
         cmdXMinus->setText(QCoreApplication::translate("frmMain", "...", nullptr));
 #if QT_CONFIG(tooltip)
+        cmdYPlus->setToolTip(QCoreApplication::translate("frmMain", "Y+", nullptr));
+#endif // QT_CONFIG(tooltip)
+        cmdYPlus->setText(QString());
+#if QT_CONFIG(tooltip)
         cmdStop->setToolTip(QCoreApplication::translate("frmMain", "Stop", nullptr));
 #endif // QT_CONFIG(tooltip)
         cmdStop->setText(QString());
+#if QT_CONFIG(tooltip)
+        cmdXPlus->setToolTip(QCoreApplication::translate("frmMain", "X+", nullptr));
+#endif // QT_CONFIG(tooltip)
+        cmdXPlus->setText(QString());
+#if QT_CONFIG(tooltip)
+        cmdYMinus->setToolTip(QCoreApplication::translate("frmMain", "Y-", nullptr));
+#endif // QT_CONFIG(tooltip)
+        cmdYMinus->setText(QString());
         cboJogStep->setItemText(0, QCoreApplication::translate("frmMain", "Continuously", nullptr));
         cboJogStep->setItemText(1, QCoreApplication::translate("frmMain", "0.01", nullptr));
         cboJogStep->setItemText(2, QCoreApplication::translate("frmMain", "0.1", nullptr));
@@ -2766,7 +2764,6 @@ public:
         mnuService->setTitle(QCoreApplication::translate("frmMain", "Edit", nullptr));
         mnuHelp->setTitle(QCoreApplication::translate("frmMain", "&Help", nullptr));
         menuMachine->setTitle(QCoreApplication::translate("frmMain", "Machine", nullptr));
-        (void)frmMain;
     } // retranslateUi
 
 };

@@ -564,7 +564,7 @@ void frmMain::updateControlsState()
         ui->txtStatus->setStyleSheet(QString("background-color: palette(button); color: palette(text);"));
     }
 
-    this->setWindowTitle(m_programFileName.isEmpty() ? qApp->applicationDisplayName() : m_programFileName.mid(m_programFileName.lastIndexOf("/") + 1) + " - " + qApp->applicationDisplayName());
+    //this->setWindowTitle(m_programFileName.isEmpty() ? qApp->applicationDisplayName() : m_programFileName.mid(m_programFileName.lastIndexOf("/") + 1) + " - " + qApp->applicationDisplayName());
 
     if (!m_processingFile)
     {

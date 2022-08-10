@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Candle2
  * Copyright (C) 2015-2016 Hayrullin Denis Ravilevich
  * Copyright (C) 2018 Patrick F.
@@ -60,7 +60,8 @@ int main(int argc, char *argv[])
 
     QString loc = QLocale().name().left(2);
     QString translationsFolder = qApp->applicationDirPath() + "/translations/";
-    QString translationFileName = translationsFolder + qApp->applicationDisplayName() + "_" + loc + ".qm";
+    //QString translationFileName = translationsFolder + qApp->applicationDisplayName() + "_" + loc + ".qm";
+    QString translationFileName = translationsFolder +"Candle2_cn.qm";
 
     qDebug() << "locale:" << loc;
 
@@ -68,13 +69,15 @@ int main(int argc, char *argv[])
         QTranslator* translator = new QTranslator();
         if (translator->load(translationFileName)) a.installTranslator(translator); else delete translator;
     }
-
-    QString baseTranslationFileName = translationsFolder + "qt_" + loc + ".qm";
+    /*
+    QString baseTranslationFileName = translationsFolder + "Candle2_" + loc + ".qm";
 
     if(QFile::exists(translationFileName)) {
         QTranslator* baseTranslator = new QTranslator();
         if (baseTranslator->load(baseTranslationFileName)) a.installTranslator(baseTranslator); else delete baseTranslator;
     }
+    */
+    qDebug()<<"translation file name"<<translationFileName;
 
     a.setApplicationVersion(APP_VERSION);
 
